@@ -15,7 +15,7 @@ const socials = [
 		icon: <Mail size={20} />,
 		href: "namakal.is22@bmsce.ac.in",
 		label: "Email",
-		handle: "dev@chronark.com",
+		handle: "namakal.is22",
 	},
 	{
 		icon: <Github size={20} />,
