@@ -1,10 +1,11 @@
 import { Redis } from "@upstash/redis";
 import { NextRequest, NextResponse } from "next/server";
 
-const redis = Redis.fromEnv();
-export const config = {
-  runtime: "edge",
-};
+const redis = new Redis({
+  url: "https://apn1-equipped-grub-34450.upstash.io",
+  token:
+    "AYaSASQgMzE1MzM3MWItNDYzMi00ZjU2LWJiOTEtNjk3OTkyNDJmMTlhMTkxZmNmY2RhMDZlNGNmMDhmYjZkODZiMzhmZmZmYTU=",
+});
 
 export default async function incr(req: NextRequest): Promise<NextResponse> {
   if (req.method !== "POST") {
