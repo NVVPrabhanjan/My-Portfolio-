@@ -18,7 +18,8 @@ export const metadata: Metadata = {
     siteName: "Prabhanjan | Java | WebDevelopment",
     images: [
       {
-        url: "https://prabhanjan.com/og.png",
+        url: "https://static.vecteezy.com/system/resources/previews/003/693/837/non_2x/p-letter-logo-icon-for-business-and-company-vector.jpg",
+        //url: "https://prabhanjan.com/og.png",
         width: 1920,
         height: 1080,
       },
