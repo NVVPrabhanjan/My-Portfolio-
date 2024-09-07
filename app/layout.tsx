@@ -9,11 +9,11 @@ export const metadata: Metadata = {
     default: "Prabhanjan | Java | WebDevelopment",
     template: "%s | Prabhanjan | Java | WebDevelopment",
   },
-  description: "Co-founder of unkey.dev and founder of planetfall.io",
+  description: "Prabhanjan BMSCE",
   openGraph: {
     title: "Prabhanjan | Java | WebDevelopment",
     description:
-      "Co-founder of unkey.dev and founder of planetfall.io",
+      "Prabhanjan BMSCE",
     url: "https://prabhanjan.com",
     siteName: "Prabhanjan | Java | WebDevelopment",
     images: [
