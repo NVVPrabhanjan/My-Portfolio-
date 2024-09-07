@@ -3,13 +3,13 @@ import React from "react";
 import Particles from "./components/particles";
 
 const navigation = [
-  { name: "Projects", href: "/projects" },
+  { name : "About Me", href: "/aboutme" },
   { name: "Contact", href: "/contact" },
-  { name : "Resume", href: "/resume.pdf"},
-  { name : "About Me", href: "/aboutme"},
-  { name : "Education", href: "/education"},
-  { name : "Skills", href: "skills"},
-  { name : "Achievements and Certifications", href: "achievements"},
+  { name : "Education", href: "/education" },
+  { name : "Skills", href: "skills" },
+  { name: "Projects", href: "/projects" },
+  { name : "Achievements and Certifications", href: "achievements" },
+  { name : "Resume", href: "/resume.pdf" },
 ];
 
 export default function Home() {
