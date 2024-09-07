@@ -6,16 +6,16 @@ import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
   title: {
-    default: "prabhanjan.com",
-    template: "%s | prabhanjan.com",
+    default: "Prabhanjan | Java | WebDevelopment",
+    template: "%s | Prabhanjan | Java | WebDevelopment",
   },
   description: "Co-founder of unkey.dev and founder of planetfall.io",
   openGraph: {
-    title: "prabhanjan.com",
+    title: "Prabhanjan | Java | WebDevelopment",
     description:
       "Co-founder of unkey.dev and founder of planetfall.io",
     url: "https://prabhanjan.com",
-    siteName: "prabhanjan.com",
+    siteName: "Prabhanjan | Java | WebDevelopment",
     images: [
       {
         url: "https://prabhanjan.com/og.png",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Prabhanjan",
+    title: "Prabhanjan | Java | WebDevelopment",
     card: "summary_large_image",
   },
   icons: {
