@@ -39,11 +39,12 @@ export default function Home() {
 
       <div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
       <div className="my-16 text-center animate-fade-in">
-        <h2 className="text-sm text-zinc-500 ">
-           An Information Science student with a strong foundation in Java, data structures, algorithms and problem-solving. 
-Skilled in HTML, CSS, JavaScript, NodeJS, SQL and MongoDB. Good at working in teams with strong communication 
-skills, and taking on new projects and practical tasks.
-
+        <h2 className="text-sm text-zinc-500 mx-52 ">
+          An Information Science student with a strong foundation in Java, data
+          structures, algorithms and problem-solving. Skilled in HTML, CSS,
+          JavaScript, NodeJS, SQL and MongoDB. Good at working in teams with
+          strong communication skills, and taking on new projects and practical
+          tasks.
         </h2>
       </div>
     </div>
