@@ -5,18 +5,14 @@ export default function AboutMe() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-tl from-black via-zinc-600/20 to-black">
       <nav className="my-8">
-        <Link href="/">
-          <a className="text-sm text-zinc-500 hover:text-zinc-300">
-            &larr; Back to Home
-          </a>
-        </Link>
+        <Link href="/">&larr; Back to Home</Link>
       </nav>
 
       <div className="text-center">
         <h1 className="text-4xl text-white font-bold sm:text-6xl md:text-8xl">
           About Me
         </h1>
-        <p className="mt-4 text-zinc-400 text-lg max-w-3xl">
+        <p className=" text-white mx-52 my-3">
           I am Prabhanjan, an Information Science student with a strong
           foundation in Java, data structures, algorithms, and problem-solving.
           I am passionate about web development and have experience working with
