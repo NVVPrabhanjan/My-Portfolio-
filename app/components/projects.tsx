@@ -10,12 +10,12 @@ const projects = [
     description: 'This page showcases my journey, skills, and passions. Feel free to explore the rest of the site to learn more about me and my work!',
     image: '/Project_MyPortfolio.png', // Replace with your image path
   },
-  {
-    id: 2,
-    title: 'Project Two',
-    description: 'This is a brief description of Project Two.',
-    image: 'path/to/project-two-image.jpg', // Replace with your image path
-  },
+//   {
+//     id: 2,
+//     title: 'Project Two',
+//     description: 'This is a brief description of Project Two.',
+//     image: 'path/to/project-two-image.jpg', // Replace with your image path
+//   },
   // Add more projects as needed
 ];
 
