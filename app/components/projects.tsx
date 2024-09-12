@@ -10,6 +10,17 @@ const projects = [
     description: 'This page showcases my journey, skills, and passions. Feel free to explore the rest of the site to learn more about me and my work!',
     image: '/Project_MyPortfolio.png', 
   },
+  {
+    id: 2,
+    title: 'Spotify UI Clone',
+    description: 'Developed a clone of Spotify web page along with music player bar in it. Technical Stack used is HTML and CSS.',
+    image: '/spotify.png', 
+  },
+  {
+    title: 'ATM TRANSACTION',
+    description: 'A project for creating new customer account, here customer can do credit, debit and transfer of money along with transaction history and many other features.',
+    image: '', 
+  },
   // Add more projects as needed
 ];
 
