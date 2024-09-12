@@ -1,8 +1,10 @@
 "use client";
+import React from "react";
 import { Github, Mail, Twitter, Phone } from "lucide-react";
 import Link from "next/link";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
+import Particles from "../components/particles"; // Import the Particles component
 
 const socials = [
 	{
@@ -33,10 +35,11 @@ const socials = [
 
 export default function Example() {
 	return (
-		<div className="bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
+		<div className="relative bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
+			<Particles className="absolute inset-0 z-0" quantity={50} staticity={60} ease={60} refresh={false} /> {/* Added Particles component */}
 			<Navigation />
-			<div className="container flex items-center justify-center min-h-screen px-4 mx-auto">
-				<div className="grid w-full grid-cols-1 gap-8 mx-auto mt-32 sm:mt-0 sm:grid-cols-3 lg:gap-16">
+			<div className="container flex items-center justify-center min-h-screen px-4 mx-auto mt-32">
+				<div className="grid w-full grid-cols-1 gap-8 mx-auto sm:grid-cols-3 lg:gap-16">
 					{socials.map((s) => (
 						<Card key={s.label}>
 							<Link
