@@ -1,5 +1,6 @@
+'use client';
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Particles from "./components/particles";
 import IconCloud from "@/app/components/magicui/icon-cloud";
 
@@ -49,18 +50,33 @@ const navigation = [
 ];
 
 export default function Home() {
+  const [hasVisited, setHasVisited] = useState(false);
+
+  useEffect(() => {
+    const visited = localStorage.getItem("hasVisited");
+    if (visited) {
+      setHasVisited(true);
+    }
+  }, []);
+
+  const handleAnimationEnd = () => {
+    localStorage.setItem("hasVisited", "true");
+    setHasVisited(true);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
-      <nav className="my-8 md:my-16 animate-fade-in">
+      <nav className={`my-8 md:my-16 ${!hasVisited ? 'animate-fade-in' : ''}`}>
         <ul className="flex flex-col md:flex-row items-center justify-center gap-4">
           {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm md:text-base duration-500 text-zinc-500 hover:text-zinc-300"
-            >
-              {item.name}
-            </Link>
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className="text-sm md:text-base duration-500 text-zinc-500 hover:text-zinc-300"
+              >
+                {item.name}
+              </Link>
+            </li>
           ))}
         </ul>
       </nav>
@@ -72,7 +88,12 @@ export default function Home() {
         quantity={100}
       />
 
-      <h1 className="py-3 px-1 z-10 text-3xl sm:text-4xl md:text-6xl lg:text-9xl text-transparent bg-white cursor-default text-edge-outline animate-title font-display whitespace-nowrap bg-clip-text duration-1000">
+      <h1
+        className={`py-3 px-1 z-10 text-3xl sm:text-4xl md:text-6xl lg:text-9xl text-transparent bg-white cursor-default text-edge-outline ${
+          !hasVisited ? "animate-title" : ""
+        } font-display whitespace-nowrap bg-clip-text duration-1000`}
+        onAnimationEnd={handleAnimationEnd}
+      >
         Prabhanjan
       </h1>
 
