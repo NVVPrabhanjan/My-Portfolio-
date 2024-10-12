@@ -2,6 +2,7 @@
 import React from "react";
 import { Navigation } from "./nav"; // Import Navigation component
 import Particles from "./particles"; // Import Particles component
+import { BoxReveal } from "./magicui/box-reveal";
 
 export const Education: React.FC = () => {
   return (
@@ -11,35 +12,30 @@ export const Education: React.FC = () => {
 
       {/* Include the Navigation component */}
       <Navigation />
+      {/* Include BoxReveal with wrapped content */}
+      <div className="size-full max-w-lg items-center justify-center overflow-hidden pt-8">
+  <BoxReveal boxColor={"#FFFFFF"} duration={0.5}>
+    <p className="text-white text-[3.5rem] font-semibold">
+      B M S C E<span className="text-[#5046e6]"></span>
+    </p>
+  </BoxReveal>
 
-      {/* Main content of the Education section */}
-      <section className="relative z-10 text-center text-white px-4 sm:px-8 lg:px-16 xl:px-32 my-3">
-        <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-6">
-          Education
-        </h1>
-        <div className="space-y-6 text-sm sm:text-base md:text-lg lg:text-xl">
-          <div>
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold">B M S College of Engineering</h3>
-            <p>Bachelor of Engineering - Information Science and Engineering</p>
-            <p>CGPA: 9.15</p>
-            <p>Dec 2022 - May 2026*</p>
-          </div>
-          
-          <div>
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold">Sri Vidhya Junior College</h3>
-            <p>XII (State Board)</p>
-            <p>Percentage: 97.5%</p>
-            <p>April 2022</p>
-          </div>
-          
-          <div>
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold">Narayana English Medium School</h3>
-            <p>X (State Board)</p>
-            <p>Percentage: 100%</p>
-            <p>March 2020</p>
-          </div>
-        </div>
-      </section>
+  <BoxReveal boxColor={"#FFFFFF"} duration={0.5}>
+    <h2 className="mt-[.5rem] text-white text-[1rem]">
+      Bachelor of Engineering -{" "}
+      <span className="text-[#5046e6]">Information Science and Engineering</span>
+    </h2>
+  </BoxReveal>
+
+  <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+    <div className="mt-6">
+      <p className="text-white">
+        -&gt; CGPA: 9.02
+        <span className="font-semibold text-[#5046e6]"><br/>-&gt; Dec 2022 - May 2026*</span>
+      </p>
+    </div>
+  </BoxReveal>
+</div>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React from "react";
 import { Navigation } from "./nav"; // Import Navigation component
 import Particles from "./particles"; // Import Particles component
 import Link from "next/link";
-
+import BoxReveal from "./magicui/box-reveal";
 export default function AboutMe() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-tl from-black via-zinc-600/20 to-black">
@@ -12,18 +12,53 @@ export default function AboutMe() {
 
       {/* Include the Navigation component */}
       <Navigation />
+    <div className="size-full max-w-lg items-center justify-center overflow-hidden pt-8">
+      {/* About Me Section */}
+      <BoxReveal boxColor={"#5046e6"} duration={0.8}>
+        <div>
+          <p className="text-white mt-2">
+            I am Prabhanjan, an Information Science student with a strong foundation in Java, data structures, algorithms, and problem-solving.
+          </p>
+        </div>
+      </BoxReveal>
 
-      <div className="relative z-10 text-center px-4 sm:px-8 lg:px-16 xl:px-32">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-bold">
-          About Me
-        </h1>
-        <p className="text-white mt-4 text-sm sm:text-base md:text-lg lg:text-xl mx-2 sm:mx-4 lg:mx-8 xl:mx-16">
-          I am Prabhanjan, an Information Science student with a strong foundation in Java, data structures, algorithms, and problem-solving. I am passionate about web development and have experience working with HTML, CSS, JavaScript, Node.js, SQL, and MongoDB. I enjoy taking on new challenges and collaborating with teams to deliver quality projects. In my free time, I work on personal projects, explore different technologies, and continuously learn new skills to expand my knowledge base.
-        </p>
-        <p className="mt-4 text-zinc-400 text-xs sm:text-sm md:text-base lg:text-lg">
-          This page showcases my journey, skills, and passions. Feel free to explore the rest of the site to learn more about me and my work!
-        </p>
-      </div>
+      {/* Skills Section */}
+      <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+        <div>
+          <h2 className="text-white text-[2rem] font-semibold">Skills</h2>
+          <p className="text-white mt-2">I am passionate about web development and have experience working with:</p>
+          <ul className="text-white list-disc list-inside mt-2">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>SQL</li>
+            <li>ReactJS</li>
+            <li>NextJS</li>
+          </ul>
+        </div>
+      </BoxReveal>
+
+      {/* Challenges Section */}
+      <BoxReveal boxColor={"#5046e6"} duration={0.4}>
+        <div>
+          <h2 className="text-white text-[2rem] font-semibold">My Approach</h2>
+          <p className="text-white mt-2">
+            I enjoy taking on new challenges and collaborating with teams to deliver quality projects. In my free time, I work on personal projects, explore different technologies, and continuously learn new skills to expand my knowledge base.
+          </p>
+        </div>
+      </BoxReveal>
+
+      {/* Journey Section */}
+      <BoxReveal boxColor={"#5046e6"} duration={1.0}>
+        <div>
+          <h2 className="text-white text-[2rem] font-semibold">My Journey</h2>
+          <p className="text-white mt-2">
+            This page showcases my journey, skills, and passions. Feel free to explore the rest of the site to learn more about me and my work!
+          </p>
+        </div>
+      </BoxReveal>
     </div>
+
+      </div>
   );
 }
