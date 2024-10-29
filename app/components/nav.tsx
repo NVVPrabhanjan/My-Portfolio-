@@ -57,7 +57,7 @@ export const Navigation: React.FC = () => {
 						<Link href="/contact" className="duration-200 text-zinc-400 hover:text-zinc-100">
 							Contact
 						</Link>
-						<Link href="/Education" className="duration-200 text-zinc-400 hover:text-zinc-100">
+						<Link href="/education" className="duration-200 text-zinc-400 hover:text-zinc-100">
 							Education
 						</Link>
 						<Link href="/skills" className="duration-200 text-zinc-400 hover:text-zinc-100">
@@ -84,7 +84,7 @@ export const Navigation: React.FC = () => {
 								<Link href="/contact" className="block py-2 text-zinc-400 hover:text-zinc-100">
 									Contact
 								</Link>
-								<Link href="/Education" className="block py-2 text-zinc-400 hover:text-zinc-100">
+								<Link href="/education" className="block py-2 text-zinc-400 hover:text-zinc-100">
 									Education
 								</Link>
 								<Link href="/skills" className="block py-2 text-zinc-400 hover:text-zinc-100">
