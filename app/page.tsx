@@ -42,7 +42,7 @@ const slugs = [
 const navigation = [
   { name: "About Me", href: "/aboutme" },
   { name: "Contact", href: "/contact" },
-  { name: "Education", href: "/Education" },
+  { name: "Education", href: "/education" },
   { name: "Skills", href: "/skills" },
   { name: "Projects", href: "/projects" },
   { name: "Achievements and Certifications", href: "/achievements" },
