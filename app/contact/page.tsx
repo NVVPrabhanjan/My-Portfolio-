@@ -35,7 +35,10 @@ const socials = [
 
 export default function Example() {
 	return (
-		<div className="relative bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
+		<div className="my-16 relative bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
+			<h1 className="text-center text-5xl md:text-7xl lg:text-8xl font-bold mb-16 tracking-tight text-white">
+      Contact  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">Me</span>
+        </h1>
 			<Particles className="absolute inset-0 z-0" quantity={50} staticity={60} ease={60} refresh={false} /> {/* Added Particles component */}
 			<Navigation />
 			<div className="container flex items-center justify-center min-h-screen px-4 mx-auto mt-32">

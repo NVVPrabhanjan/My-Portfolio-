@@ -45,7 +45,7 @@ const navigation = [
   { name: "Education", href: "/Education" },
   { name: "Skills", href: "/skills" },
   { name: "Projects", href: "/projects" },
-  { name: "Achievements and Certifications", href: "/achievements" },
+  { name: "Experience", href: "/Experience" },
   { name: "Resume", href: "/resume.pdf" },
 ];
 

@@ -6,6 +6,9 @@ import BoxReveal from "./magicui/box-reveal"; // Import BoxReveal component
 const Skills = () => {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-tl from-black via-zinc-600/20 to-black">
+      <h1 className="text-center text-5xl md:text-7xl lg:text-8xl font-bold mb-16 tracking-tight text-white">
+      My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">Skills</span>
+        </h1>
       {/* Include the Particles component */}
       <Particles className="absolute inset-0 z-0" quantity={50} staticity={60} ease={60} refresh={false} />
 
