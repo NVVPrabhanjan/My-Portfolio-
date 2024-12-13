@@ -3,19 +3,21 @@ import React, { useState } from "react";
 import { Navigation } from "./nav";
 import Particles from "./particles";
 import { ExternalLink, Github, CodeIcon } from "lucide-react";
+import Image from "next/image"; // Import Next.js Image component
 
-// Define the Project type
+// Define the Project type with optional image
 interface Project {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image?: string;
   githubLink: string;
   technologies: string[];
   type: string;
+  deployedLink?: string;
 }
 
-// Project data
+// Project data with optional deployed links
 const projects: Project[] = [
   {
     id: 1,
@@ -24,6 +26,7 @@ const projects: Project[] = [
 Designed to provide an intuitive and engaging user experience.`,
     image: "/Project_MyPortfolio.png",
     githubLink: "https://github.com/yourusername/my-portfolio",
+    deployedLink: "https://your-portfolio-site.vercel.app",
     technologies: ["Next.js", "Tailwind CSS", "React"],
     type: "Web Development",
   },
@@ -36,6 +39,7 @@ Designed to provide an intuitive and engaging user experience.`,
 • Created responsive and intuitive user interface`,
     image: "/JobPortal.jpg",
     githubLink: "https://github.com/yourusername/job-portal",
+    deployedLink: "https://job-portal-demo.vercel.app",
     technologies: ["Express.js", "React", "MongoDB", "Tailwind CSS"],
     type: "Full Stack",
   },
@@ -47,7 +51,6 @@ Designed to provide an intuitive and engaging user experience.`,
 • Money transfer capabilities
 • Detailed transaction history
 • Secure banking operations`,
-    image: "",
     githubLink: "https://github.com/yourusername/atm-transaction",
     technologies: ["Java", "SQL", "OOP"],
     type: "Banking App",
@@ -59,14 +62,13 @@ Designed to provide an intuitive and engaging user experience.`,
 • Seamless event registration
 • User-friendly event navigation
 • Integrated database management`,
-    image: "",
     githubLink: "https://github.com/yourusername/bmsce-events",
     technologies: ["React.js", "Express.js", "MySQL"],
     type: "Web Application",
   },
 ];
 
-// ProjectCard Component
+// ProjectCard Component with improved hover and link handling
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -77,16 +79,18 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       {project.image ? (
-        <div className="relative overflow-hidden">
-          <img
+        <div className="relative overflow-hidden h-48">
+          <Image
             src={project.image}
             alt={project.title}
-            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+            layout="fill"
+            objectFit="cover"
+            className="transition-transform duration-300 group-hover:scale-110"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
           />
           <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <div className="text-white text-center">
-              <p className="text-sm">{project.type}</p>
-            </div>
+            <p className="text-white text-sm">{project.type}</p>
           </div>
         </div>
       ) : (
@@ -102,7 +106,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         </p>
 
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.map((tech: string, index: number) => (
+          {project.technologies.map((tech, index) => (
             <span
               key={index}
               className="px-2 py-1 bg-white/10 text-xs text-white rounded-full"
@@ -112,8 +116,8 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           ))}
         </div>
 
-        {project.githubLink && (
-          <div className="flex space-x-2">
+        <div className="flex space-x-2">
+          {project.githubLink && (
             <a
               href={project.githubLink}
               target="_blank"
@@ -123,25 +127,25 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
               <Github size={16} />
               <span>GitHub</span>
             </a>
-            {isHovered && (
-              <a
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
-              >
-                <ExternalLink size={16} />
-                <span>View</span>
-              </a>
-            )}
-          </div>
-        )}
+          )}
+          
+          {project.deployedLink && isHovered && (
+            <a
+              href={project.deployedLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+            >
+              <ExternalLink size={16} />
+              <span>View Live</span>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
 };
 
-// Projects Component
 const Projects = () => {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-tl from-black via-zinc-900 to-black py-16 overflow-hidden">
@@ -154,7 +158,7 @@ const Projects = () => {
       />
       <Navigation />
 
-      <div className="relative z-10 container mx-auto px-4">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl pt-20 md:pt-32">
         <h1 className="text-center text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-16 tracking-tight">
           My{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
@@ -162,8 +166,7 @@ const Projects = () => {
           </span>
         </h1>
 
-        <div className="
-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map(project => (
             <ProjectCard key={project.id} project={project} />
           ))}

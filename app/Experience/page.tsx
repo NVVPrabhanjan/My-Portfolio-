@@ -3,12 +3,14 @@ import React from "react";
 import { Navigation } from "../components/nav";
 import Particles from "../components/particles";
 import { Briefcase, Code, Server, Globe } from "lucide-react";
+import Link from "next/link";
 
 // Types
 interface ExperienceDescription {
   project: string;
   details: string;
   technologies: string[];
+  link?: string;
 }
 
 interface Experience {
@@ -35,12 +37,14 @@ const experiences: Experience[] = [
         details:
           "Developed a full-stack website using Next.js to integrate front-end and back-end functionalities, providing a seamless and dynamic user experience for school-related information.",
         technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+        link: "https://stjosephhighschooltbdam.com/"
       },
       {
         project: "Curly Cuts Pet Grooming",
         details:
           "Designed a responsive front-end for Curly Cuts using Next.js, focusing on a modern and user-friendly web page design.",
         technologies: ["Next.js", "React", "Responsive Design"],
+        link: "https://curly-cuts.vercel.app/"
       },
     ],
   },
@@ -78,7 +82,19 @@ const ExperienceCard: React.FC<{ experience: Experience }> = ({ experience }) =>
 
       {experience.descriptions.map((desc, index) => (
         <div key={index} className="bg-white/5 rounded-lg p-4">
-          <h3 className="font-semibold text-white mb-2">{desc.project}</h3>
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="font-semibold text-white">{desc.project}</h3>
+            {desc.link && (
+              <Link 
+                href={desc.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                <span className="text-sm">Visit Website</span>
+              </Link>
+            )}
+          </div>
           <p className="text-gray-300 mb-3">{desc.details}</p>
           <div className="flex flex-wrap gap-2">
             {desc.technologies.map((tech, techIndex) => (
@@ -136,7 +152,7 @@ const Experience = () => {
       />
       <Navigation />
 
-      <div className="relative z-10 container mx-auto px-4">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl pt-20 md:pt-32">
         <h1 className="text-center text-5xl md:text-7xl lg:text-8xl font-bold mb-16 tracking-tight">
           Professional{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">

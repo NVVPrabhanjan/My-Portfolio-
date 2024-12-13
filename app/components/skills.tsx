@@ -1,67 +1,103 @@
+"use client";
 import React from "react";
-import { Navigation } from "./nav"; // Import Navigation component
-import Particles from "./particles"; // Import Particles component
-import BoxReveal from "./magicui/box-reveal"; // Import BoxReveal component
+import { Navigation } from "./nav";
+import Particles from "./particles";
+import BoxReveal from "./magicui/box-reveal";
+import { Code, Settings, Users } from "lucide-react";
+
+const skillCategories = [
+  {
+    title: "Technical Skills",
+    icon: <Code className="w-10 h-10 text-blue-500" />,
+    skills: [
+      "HTML5", 
+      "CSS3", 
+      "JavaScript (ES6+)", 
+      "TypeScript", 
+      "SQL", 
+      "ReactJS", 
+      "NextJS",
+      "Tailwind CSS"
+    ]
+  },
+  {
+    title: "Tools/Platforms",
+    icon: <Settings className="w-10 h-10 text-green-500" />,
+    skills: [
+      "Visual Studio Code",
+      "Git & GitHub",
+      "LeetCode",
+      "Figma",
+      "Postman",
+      "Docker (Basic)",
+      "Windows",
+      "Linux"
+    ]
+  },
+  {
+    title: "Soft Skills",
+    icon: <Users className="w-10 h-10 text-purple-500" />,
+    skills: [
+      "Rapid Learning",
+      "Problem Solving",
+      "Team Collaboration", 
+      "Communication",
+      "Time Management",
+      "Adaptability",
+      "Critical Thinking",
+      "Leadership"
+    ]
+  }
+];
+
 
 const Skills = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-tl from-black via-zinc-600/20 to-black">
-      <h1 className="text-center text-5xl md:text-7xl lg:text-8xl font-bold mb-16 tracking-tight text-white">
-      My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">Skills</span>
-        </h1>
-      {/* Include the Particles component */}
-      <Particles className="absolute inset-0 z-0" quantity={50} staticity={60} ease={60} refresh={false} />
-
-      {/* Include the Navigation component */}
+    <div className="relative flex flex-col flex-row items-center justify-center min-h-screen bg-gradient-to-tl from-black via-zinc-900 to-black overflow-hidden">
       <Navigation />
+      <Particles 
+        className="absolute inset-0 z-0" 
+        quantity={50} 
+        staticity={60} 
+        ease={60} 
+        refresh={false} 
+      />
 
-      {/* Main content of the Skills section */}
-      <section className="relative z-10 text-center text-white mx-10 my-3 pt-32">
-        {/* Flexbox container for side-by-side layout */}
-        <div className="flex flex-wrap justify-center space-x-10 space-y-8">
-          {/* Technical Skills in BoxReveal format */}
-          <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-            <div>
-              <h2 className="text-white text-[2rem] font-semibold">Technical Skills</h2>
-              <ul className="text-white list-disc list-inside mt-2">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>SQL</li>
-            <li>ReactJS</li>
-            <li>NextJS</li>
-          </ul>
-            </div>
-          </BoxReveal>
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl pt-20 md:pt-32">
+        <h1 className="text-center text-5xl md:text-7xl lg:text-8xl font-bold mb-16 tracking-tight text-white">
+          My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">Skills</span>
+        </h1>
 
-          {/* Tools/Platforms in BoxReveal format */}
-          <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-            <div>
-              <h2 className="text-white text-[2rem] font-semibold">Tools/Platforms</h2>
-              <ul className="text-white list-disc list-inside mt-2">
-                <li>Visual Studio Code (VS Code)</li>
-                <li>LeetCode</li>
-                <li>Windows</li>
-              </ul>
-            </div>
-          </BoxReveal>
-
-          {/* Soft Skills in BoxReveal format */}
-          <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-            <div>
-              <h2 className="text-white text-[2rem] font-semibold">Soft Skills</h2>
-              <ul className="text-white list-disc list-inside mt-2">
-                <li>Quick Learner</li>
-                <li>Good Explaining Skills</li>
-                <li>Organizational Skills</li>
-                <li>Team Player</li>
-                <li>Self-Motivated</li>
-                <li>Strong Communication</li>
-              </ul>
-            </div>
-          </BoxReveal>
+        <div className="grid md:grid-cols-3 gap-8">
+          {skillCategories.map((category, index) => (
+            <BoxReveal 
+              key={category.title} 
+              boxColor="#5046e6" 
+              duration={0.5 + (index * 0.2)}
+            >
+              <div className="bg-white/10 p-6 rounded-xl border border-white/10 hover:border-white/30 transition-all duration-300">
+                <div className="flex items-center mb-4 space-x-4">
+                  {category.icon}
+                  <h2 className="text-2xl font-semibold text-white">
+                    {category.title}
+                  </h2>
+                </div>
+                <ul className="space-y-2 text-gray-300">
+                  {category.skills.map((skill) => (
+                    <li 
+                      key={skill} 
+                      className="flex items-center space-x-2 hover:text-white transition-colors"
+                    >
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span>{skill}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </BoxReveal>
+          ))}
         </div>
-      </section>
+      </div>
     </div>
   );
 };
