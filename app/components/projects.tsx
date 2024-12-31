@@ -35,7 +35,7 @@ The platform is designed to deliver an intuitive user experience while highlight
     title: "Farouche - Hostel Website",
     description: `Developed a dynamic hostel registration website for a fest with over 2000 students using Next.js 
     for seamless front-end functionality, Express.js for efficient server-side operations, and MongoDB for robust database management. Styled the platform with Tailwind CSS to ensure a responsive and modern user interface. The system streamlined event registrations, enhancing the overall user experience.`,
-    image: "/image.png",
+    image: "/Farouche.png",
     githubLink: "https://github.com/NVVPrabhanjan/FAROUCHE-Website",
     technologies: ["Express JS","Mongo DB","Next.js", "Tailwind CSS"],
     type: "Web Development",
