@@ -32,6 +32,16 @@ The platform is designed to deliver an intuitive user experience while highlight
   },
   {
     id: 2,
+    title: "Farouche - Hostel Website",
+    description: `Developed a dynamic hostel registration website for a fest with over 2000 students using Next.js 
+    for seamless front-end functionality, Express.js for efficient server-side operations, and MongoDB for robust database management. Styled the platform with Tailwind CSS to ensure a responsive and modern user interface. The system streamlined event registrations, enhancing the overall user experience.`,
+    image: "/image.png",
+    githubLink: "https://github.com/NVVPrabhanjan/FAROUCHE-Website",
+    technologies: ["Express JS","Mongo DB","Next.js", "Tailwind CSS"],
+    type: "Web Development",
+  },
+  {
+    id: 3,
     title: "Job Portal",
     description: `A full-stack job marketplace connecting employers and job seekers seamlessly. 
 Features include advanced job search, intuitive application processes, and detailed user profiles. 
@@ -42,7 +52,7 @@ Backed by a robust RESTful API and a responsive, user-friendly interface.`,
     type: "Full Stack",
   },
   {
-    id: 5,
+    id: 4,
     title: "Course Selling Website",
     description: `An innovative platform designed for seamless online course sales and management. 
 Key features include course browsing and instructor-student interaction. 
@@ -53,7 +63,7 @@ Built with a powerful tech stack ensuring performance and scalability.`,
     type: "Full Stack",
   },
   {
-    id: 3,
+    id: 5,
     title: "ATM Transaction",
     description: `A comprehensive banking application simulating core ATM functionalities. 
 Features include secure customer account creation, money transfers, detailed transaction history, and efficient banking operations. `,
@@ -63,7 +73,7 @@ githubLink: "https://github.com/yourusername/atm-transaction",
     type: "Banking App",
   },
   {
-    id: 4,
+    id: 6,
     title: "BMSCE Events",
     description: `An event management platform tailored for BMSCE, streamlining event registration and navigation. 
 Provides a user-friendly interface for participants and robust database integration for organizers. Enhances event management efficiency and user engagement.`,
