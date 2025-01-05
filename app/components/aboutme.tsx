@@ -3,10 +3,12 @@ import React from "react";
 import { Navigation } from "./nav";
 import Particles from "./particles";
 import BoxReveal from "./magicui/box-reveal";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutMe() {
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-tl from-black via-zinc-600/20 to-black">
+    <div className="relative min-h-screen bg-gradient-to-tl from-black via-zinc-600/20 to-black">
       <Navigation />
       <Particles 
         className="absolute inset-0 z-0" 
@@ -16,56 +18,80 @@ export default function AboutMe() {
         refresh={false} 
       />
 
-<div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl pt-20 md:pt-32">
-        <h1 className="text-center text-5xl md:text-7xl lg:text-8xl font-bold mb-16 tracking-tight text-white">
-          About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">Me</span>
-        </h1>
-
-        <div className="space-y-8">
-          <BoxReveal boxColor="#5046e6" duration={0.8}>
-            <p className="text-white text-lg">
-              Hi, I'm Prabhanjan, an Information Science student passionate about technology and innovation. 
-              I have a strong foundation in programming, data structures, and problem-solving.
-            </p>
-          </BoxReveal>
-
-          <BoxReveal boxColor="#5046e6" duration={0.6}>
-            <div>
-              <h2 className="text-2xl font-semibold text-white mb-4">Skills</h2>
-              <div className="grid grid-cols-2 gap-2 text-white">
-                <ul className="list-disc list-inside">
-                  <li>HTML</li>
-                  <li>CSS</li>
-                  <li>JavaScript</li>
-                </ul>
-                <ul className="list-disc list-inside">
-                  <li>SQL</li>
-                  <li>ReactJS</li>
-                  <li>NextJS</li>
-                </ul>
+      <div className="relative z-10 container mx-auto px-4 py-20 md:py-32">
+        <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          {/* Left Column - Image and Name */}
+          <div className="relative">
+            <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl transform rotate-2"></div>
+              <div className="absolute inset-0 bg-black rounded-2xl transform -rotate-2">
+                <Image
+                  src="/profile.jpg" // Replace with your image path
+                  alt="Prabhanjan"
+                  fill
+                  className="object-cover rounded-2xl"
+                  priority
+                />
               </div>
             </div>
-          </BoxReveal>
-
-          <BoxReveal boxColor="#5046e6" duration={0.7}>
-            <div>
-              <h2 className="text-2xl font-semibold text-white mb-4">My Approach</h2>
-              <p className="text-white text-lg">
-                I thrive on challenges and collaborative teamwork. My goal is to create innovative solutions 
-                that make a meaningful impact. I continuously learn and explore new technologies to expand my skills.
-              </p>
+            <div className="mt-8 text-center md:text-left">
+              <h1 className="text-4xl md:text-6xl font-bold text-white">
+                Prabhanjan
+              </h1>
+              <p className="text-xl text-gray-400 mt-2">Information Science Student</p>
+              <Link className="text-2xl font-semibold text-blue-400 mb-4" target="_blank" href={'https://www.linkedin.com/in/n-v-venkata-prabhanjan-740213248/' }> LinkedIn
+              </Link>
             </div>
-          </BoxReveal>
+          </div>
 
-          <BoxReveal boxColor="#5046e6" duration={1.0}>
-            <div>
-              <h2 className="text-2xl font-semibold text-white mb-4">My Journey</h2>
-              <p className="text-white text-lg">
-                This site is a reflection of my professional growth and passion for technology. 
-                I invite you to explore my projects and learn more about my journey.
-              </p>
-            </div>
-          </BoxReveal>
+          {/* Right Column - Content */}
+          <div className="space-y-8">
+            <BoxReveal boxColor="#5046e6" duration={0.8}>
+              <div className="bg-zinc-900/50 p-6 rounded-xl">
+                <h2 className="text-2xl font-semibold text-white mb-4">About Me</h2>
+                <p className="text-gray-300">
+                  Hi, I'm passionate about technology and innovation. With a strong foundation 
+                  in programming, data structures, and problem-solving, I'm constantly pushing 
+                  the boundaries of what's possible in tech.
+                </p>
+              </div>
+            </BoxReveal>
+
+            <BoxReveal boxColor="#5046e6" duration={0.6}>
+              <div className="bg-zinc-900/50 p-6 rounded-xl">
+                <h2 className="text-2xl font-semibold text-white mb-4">Technical Skills</h2>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    {['Java', 'JavaScript', 'Express JS', 'Node JS'].map((skill) => (
+                      <div key={skill} className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span className="text-gray-300">{skill}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="space-y-2">
+                    {['SQL', 'Mongo DB','ReactJS', 'NextJS'].map((skill) => (
+                      <div key={skill} className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                        <span className="text-gray-300">{skill}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </BoxReveal>
+
+            <BoxReveal boxColor="#5046e6" duration={0.7}>
+              <div className="bg-zinc-900/50 p-6 rounded-xl">
+                <h2 className="text-2xl font-semibold text-white mb-4">My Approach</h2>
+                <p className="text-gray-300">
+                  I thrive on challenges and collaborative teamwork. My goal is to create 
+                  innovative solutions that make a meaningful impact while continuously 
+                  learning and exploring new technologies.
+                </p>
+              </div>
+            </BoxReveal>
+          </div>
         </div>
       </div>
     </div>

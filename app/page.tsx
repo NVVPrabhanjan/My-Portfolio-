@@ -17,6 +17,7 @@ const navigation = [
   { name: "Projects", href: "/projects", icon: "💻" },
   { name: "Skills", href: "/skills", icon: "🚀" },
   { name: "Experience", href: "/Experience", icon: "📋" },
+  { name: "Education", href: "/Education", icon: "🎓" },
   { name: "Contact", href: "/contact", icon: "📬" },
   { name: "Resume", href: "/resume.pdf", icon: "📄" }
 ];

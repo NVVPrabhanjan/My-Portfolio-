@@ -2,10 +2,14 @@
 import React, { useState } from "react";
 import { Navigation } from "./nav";
 import Particles from "./particles";
-import { ExternalLink, Github, CodeIcon } from "lucide-react";
-import Image from "next/image"; // Import Next.js Image component
+import { ExternalLink, Github, CodeIcon, TagIcon } from "lucide-react";
+import Image from "next/image";
 
-// Define the Project type with optional image
+interface Technology {
+  name: string;
+  color: string;
+}
+
 interface Project {
   id: number;
   title: string;
@@ -17,177 +21,203 @@ interface Project {
   deployedLink?: string;
 }
 
-// Project data with optional deployed links
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "My Portfolio",
-    description: `An engaging and comprehensive personal portfolio showcasing my professional journey, technical skills, and projects. 
-The platform is designed to deliver an intuitive user experience while highlighting my expertise and accomplishments.`,
-    image: "/Project_MyPortfolio.png",
-    githubLink: "https://github.com/NVVPrabhanjan/My-Portfolio-",
-    deployedLink: "https://prabhanjan.live/",
-    technologies: ["Next.js", "Tailwind CSS"],
-    type: "Web Development",
-  },
-  {
-    id: 2,
-    title: "Farouche - Hostel Website",
-    description: `Developed a dynamic hostel registration website for a fest with over 2000 students using Next.js 
-    for seamless front-end functionality, Express.js for efficient server-side operations, and MongoDB for robust database management. Styled the platform with Tailwind CSS to ensure a responsive and modern user interface. The system streamlined event registrations, enhancing the overall user experience.`,
-    image: "/Farouche.png",
-    githubLink: "https://github.com/NVVPrabhanjan/FAROUCHE-Website",
-    technologies: ["Express JS","Mongo DB","Next.js", "Tailwind CSS"],
-    type: "Web Development",
-  },
-  {
-    id: 3,
-    title: "Job Portal",
-    description: `A full-stack job marketplace connecting employers and job seekers seamlessly. 
-Features include advanced job search, intuitive application processes, and detailed user profiles. 
-Backed by a robust RESTful API and a responsive, user-friendly interface.`,
-    image: "/JobPortal.jpg",
-    githubLink: "https://github.com/NVVPrabhanjan/JobPortal",
-    technologies: ["Express.js", "React", "MongoDB", "Tailwind CSS"],
-    type: "Full Stack",
-  },
-  {
-    id: 4,
-    title: "Course Selling Website",
-    description: `An innovative platform designed for seamless online course sales and management. 
-Key features include course browsing and instructor-student interaction. 
-Built with a powerful tech stack ensuring performance and scalability.`,
-    image: "/CourseSelling.png",
-    githubLink: "https://github.com/NVVPrabhanjan/JobPortal",
-    technologies: ["Express.js", "React", "MongoDB"],
-    type: "Full Stack",
-  },
-  {
-    id: 5,
-    title: "ATM Transaction",
-    description: `A comprehensive banking application simulating core ATM functionalities. 
-Features include secure customer account creation, money transfers, detailed transaction history, and efficient banking operations. `,
-image:"/image.png",    
-githubLink: "https://github.com/yourusername/atm-transaction",
-    technologies: ["Java", "SQL", "OOP"],
-    type: "Banking App",
-  },
-  {
-    id: 6,
-    title: "BMSCE Events",
-    description: `An event management platform tailored for BMSCE, streamlining event registration and navigation. 
-Provides a user-friendly interface for participants and robust database integration for organizers. Enhances event management efficiency and user engagement.`,
-    githubLink: "https://github.com/NVVPrabhanjan/BMSCE_Events",
-    technologies: ["React.js", "Express.js", "MySQL"],
-    type: "Web Application",
-  },
-];
+const getTechnologyColor = (tech: string): string => {
+  const colors: { [key: string]: string } = {
+    "Next.js": "bg-black",
+    "React": "bg-blue-600",
+    "Express.js": "bg-green-600",
+    "MongoDB": "bg-green-500",
+    "MySQL": "bg-blue-500",
+    "Tailwind CSS": "bg-cyan-500",
+    "Java": "bg-red-500",
+    "SQL": "bg-orange-500",
+    "OOP": "bg-purple-500"
+  };
+  return colors[tech] || "bg-gray-500";
+};
 
-
-// ProjectCard Component with improved hover and link handling
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const ProjectImage: React.FC<{ project: Project }> = ({ project }) => {
+  if (!project.image) {
+    return (
+      <div className="h-48 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+        <CodeIcon className="text-white" size={32} />
+      </div>
+    );
+  }
 
   return (
-    <div
-      className="project-card relative group overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl bg-white/10 backdrop-blur-sm border border-white/10 hover:border-white/20"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {project.image ? (
-        <div className="relative overflow-hidden h-48">
-          <Image
-            src={project.image}
-            alt={project.title}
-            layout="fill"
-            objectFit="cover"
-            className="transition-transform duration-300 group-hover:scale-110"
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
-          />
-          <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <p className="text-white text-sm">{project.type}</p>
-          </div>
-        </div>
-      ) : (
-        <div className="h-16 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-          <CodeIcon className="text-white" size={32} />
-        </div>
-      )}
-
-      <div className="p-5 text-justify">
-        <h2 className="text-xl font-bold text-white mb-2">{project.title}</h2>
-        <p className="text-gray-300 text-sm mb-4 h-32 overflow-hidden">
-          {project.description}
-        </p>
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.map((tech, index) => (
-            <span
-              key={index}
-              className="px-2 py-1 bg-white/10 text-xs text-white rounded-full"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex space-x-2">
-          {project.githubLink && (
-            <a
-              href={project.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 px-4 py-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition"
-            >
-              <Github size={16} />
-              <span>GitHub</span>
-            </a>
-          )}
-          
-          {project.deployedLink && isHovered && (
-            <a
-              href={project.deployedLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
-            >
-              <ExternalLink size={16} />
-              <span>View Live</span>
-            </a>
-          )}
+    <div className="relative overflow-hidden h-48 group">
+      <Image
+        src={project.image}
+        alt={project.title}
+        layout="fill"
+        objectFit="cover"
+        className="transition-transform duration-500 group-hover:scale-110"
+        placeholder="blur"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute bottom-4 left-4 flex items-center space-x-2">
+          <TagIcon size={16} className="text-white" />
+          <span className="text-white text-sm font-medium">{project.type}</span>
         </div>
       </div>
     </div>
   );
 };
 
-const Projects = () => {
+const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-tl from-black via-zinc-900 to-black py-16 overflow-hidden">
+    <article
+      className="group h-full flex flex-col rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl bg-white/10 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:translate-y-[-4px]"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <ProjectImage project={project} />
+
+      <div className="p-6 flex flex-col flex-grow">
+        <h2 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+          {project.title}
+        </h2>
+        <p className="text-gray-300 text-sm mb-4 flex-grow">
+          {project.description}
+        </p>
+
+        <div className="space-y-4">
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.map((tech, index) => (
+              <span
+                key={index}
+                className={`px-3 py-1 text-xs text-white rounded-full ${getTechnologyColor(tech)} bg-opacity-20 backdrop-blur-sm border border-white/10`}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex space-x-3">
+            <a
+              href={project.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 px-4 py-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-all duration-300"
+              aria-label={`View ${project.title} source code on GitHub`}
+            >
+              <Github size={16} />
+              <span>GitHub</span>
+            </a>
+            
+            {project.deployedLink && (
+              <a
+                href={project.deployedLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center space-x-2 px-4 py-2 text-white rounded-lg transition-all duration-300 ${
+                  isHovered 
+                    ? "bg-blue-500 hover:bg-blue-600" 
+                    : "bg-blue-500/50"
+                }`}
+                aria-label={`View live demo of ${project.title}`}
+              >
+                <ExternalLink size={16} />
+                <span>Live Demo</span>
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+};
+
+const Projects = () => {
+  const projects: Project[] = [
+    {
+      id: 1,
+      title: "My Portfolio",
+      description: "An engaging and comprehensive personal portfolio showcasing my professional journey, technical skills, and projects. The platform is designed to deliver an intuitive user experience while highlighting my expertise and accomplishments.",
+      image: "/Project_MyPortfolio.png",
+      githubLink: "https://github.com/NVVPrabhanjan/My-Portfolio-",
+      deployedLink: "https://prabhanjan.live/",
+      technologies: ["Next.js", "Tailwind CSS"],
+      type: "Web Development",
+    },
+    {
+      id: 2,
+      title: "Farouche - Hostel Website",
+      description: "Developed a dynamic hostel registration website for a fest with over 2000 students using Next.js for seamless front-end functionality, Express.js for efficient server-side operations, and MongoDB for robust database management. Styled the platform with Tailwind CSS to ensure a responsive and modern user interface.",
+      image: "/Farouche.png",
+      githubLink: "https://github.com/NVVPrabhanjan/FAROUCHE-Website",
+      technologies: ["Express.js", "MongoDB", "Next.js", "Tailwind CSS"],
+      type: "Web Development",
+    },
+    {
+      id: 3,
+      title: "Job Portal",
+      description: "A full-stack job marketplace connecting employers and job seekers seamlessly. Features include advanced job search, intuitive application processes, and detailed user profiles. Backed by a robust RESTful API and a responsive, user-friendly interface.",
+      image: "/JobPortal.jpg",
+      githubLink: "https://github.com/NVVPrabhanjan/JobPortal",
+      technologies: ["Express.js", "React", "MongoDB", "Tailwind CSS"],
+      type: "Full Stack",
+    },
+    {
+      id: 4,
+      title: "Course Selling Website",
+      description: "An innovative platform designed for seamless online course sales and management. Key features include course browsing and instructor-student interaction. Built with a powerful tech stack ensuring performance and scalability.",
+      image: "/CourseSelling.png",
+      githubLink: "https://github.com/NVVPrabhanjan/CourseSellingApp",
+      technologies: ["Express.js", "React", "MongoDB"],
+      type: "Full Stack",
+    },
+    {
+      id: 5,
+      title: "ATM Transaction",
+      description: "A comprehensive banking application simulating core ATM functionalities. Features include secure customer account creation, money transfers, detailed transaction history, and efficient banking operations.",
+      image: "/image.png",
+      githubLink: "https://github.com/NVVPrabhanjan",
+      technologies: ["Java", "SQL", "OOP"],
+      type: "Banking App",
+    },
+    {
+      id: 6,
+      title: "BMSCE Events",
+      description: "An event management platform tailored for BMSCE, streamlining event registration and navigation. Provides a user-friendly interface for participants and robust database integration for organizers. Enhances event management efficiency and user engagement.",
+      githubLink: "https://github.com/NVVPrabhanjan/BMSCE_Events",
+      technologies: ["React", "Express.js", "MySQL"],
+      type: "Web Application",
+    }
+  ];
+
+  return (
+    <div className="relative min-h-screen bg-gradient-to-tl from-black via-zinc-900 to-black">
+      <Navigation />
+      
       <Particles
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 -z-10"
         quantity={100}
         staticity={50}
         ease={70}
         refresh={false}
       />
-      <Navigation />
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl pt-20 md:pt-32">
-        <h1 className="text-center text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-16 tracking-tight">
-          My{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
-            Projects
-          </span>
-        </h1>
+      <main className="container mx-auto px-4 py-20 md:py-32 relative">
+        <header className="text-center mb-16">
+          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight">
+            My{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 animate-gradient">
+              Projects
+            </span>
+          </h1>
+        </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {projects.map(project => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 };
