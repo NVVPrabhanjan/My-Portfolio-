@@ -5,6 +5,11 @@ import Particles from "./particles";
 import BoxReveal from "./magicui/box-reveal";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  TextRevealCard,
+  TextRevealCardDescription,
+  TextRevealCardTitle,
+} from "../components/magicui/text-reveal-card";
 
 export default function AboutMe() {
   return (
@@ -26,7 +31,7 @@ export default function AboutMe() {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl transform rotate-2"></div>
               <div className="absolute inset-0 bg-black rounded-2xl transform -rotate-2">
                 <Image
-                  src="/profile.jpg" // Replace with your image path
+                  src="/profile.jpg"
                   alt="Prabhanjan"
                   fill
                   className="object-cover rounded-2xl"
@@ -91,6 +96,24 @@ export default function AboutMe() {
                 </p>
               </div>
             </BoxReveal>
+
+            {/* New Development Section with TextRevealCard */}
+            <div className="mt-12">
+              <div className="flex items-center justify-center bg-[#0E0E10] rounded-3xl w-full">
+                <TextRevealCard
+                  text="Code. Create. &"
+                  revealText="Conquer."
+                >
+                  <TextRevealCardTitle>
+                  Development Journey
+                  </TextRevealCardTitle>
+                  <TextRevealCardDescription>
+                    Specializing in modern development. I create seamless digital experiences 
+                    that combine aesthetics with functionality.
+                  </TextRevealCardDescription>
+                </TextRevealCard>
+              </div>
+            </div>
           </div>
         </div>
       </div>
