@@ -43,7 +43,7 @@ const projects: Project[] = [
     description:
       "Developed a full-stack website using Next.js to integrate front-end and back-end functionalities, providing a seamless and dynamic user experience for school-related information.",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    image: "/images/stjoseph.png",
+    image: "/e2.png",
     link: "https://stjosephhighschooltbdam.com/",
   },
   {
