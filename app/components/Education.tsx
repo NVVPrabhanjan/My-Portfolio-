@@ -7,7 +7,7 @@ import BoxReveal from "./magicui/box-reveal";
 const educationData = {
   university: "B M S College of Engineering",
   degree: "Bachelor of Engineering - Information Science and Engineering",
-  cgpa: "9.02",
+  cgpa: "8.89",
   duration: {
     start: "Dec 2022",
     end: "May 2026",
