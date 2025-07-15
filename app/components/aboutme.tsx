@@ -92,37 +92,9 @@ export default function AboutMe() {
                   About Me
                 </h2>
                 <p className="text-gray-300 leading-relaxed">
-                  Hi, I'm passionate about technology and innovation. With a strong foundation 
-                  in programming, data structures, and problem-solving, I'm constantly pushing 
-                  the boundaries of what's possible in tech.
+                  Enthusiastic individual with a strong aptitude for problem solving and innovation. 
+                  Passionate about leveraging my skills to tackle challenges, drive meaningful solutions, and contribute to cutting-edge advancements in technology.
                 </p>
-              </div>
-            </BoxReveal>
-
-            <BoxReveal boxColor="#5046e6" duration={0.6}>
-              <div className="bg-zinc-900/80 backdrop-blur-sm p-6 rounded-xl border border-zinc-800 shadow-lg hover:shadow-purple-900/20 transition-shadow">
-                <h2 className="text-2xl font-semibold text-white mb-4 flex items-center">
-                  <span className="h-6 w-1 bg-purple-500 rounded-full mr-3"></span>
-                  Technical Skills
-                </h2>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-3">
-                    {['Java', 'JavaScript', 'Express JS', 'Node JS'].map((skill) => (
-                      <div key={skill} className="flex items-center space-x-2 group">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full group-hover:scale-125 transition-transform"></div>
-                        <span className="text-gray-300 group-hover:text-white transition-colors">{skill}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="space-y-3">
-                    {['SQL', 'Mongo DB','ReactJS', 'NextJS'].map((skill) => (
-                      <div key={skill} className="flex items-center space-x-2 group">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full group-hover:scale-125 transition-transform"></div>
-                        <span className="text-gray-300 group-hover:text-white transition-colors">{skill}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
             </BoxReveal>
 
@@ -159,25 +131,6 @@ export default function AboutMe() {
               </div>
             </div>
             
-            {/* Projects Section */}
-            <BoxReveal boxColor="#5046e6" duration={0.9}>
-              <div className="bg-zinc-900/80 backdrop-blur-sm p-6 rounded-xl border border-zinc-800 shadow-lg hover:shadow-purple-900/20 transition-shadow">
-                <h2 className="text-2xl font-semibold text-white mb-4 flex items-center">
-                  <span className="h-6 w-1 bg-purple-500 rounded-full mr-3"></span>
-                  Featured Projects
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="bg-zinc-800/50 p-4 rounded-lg hover:bg-zinc-800 transition-colors cursor-pointer">
-                    <h3 className="text-lg font-medium text-blue-400">Project Alpha</h3>
-                    <p className="text-gray-400 text-sm mt-2">A full-stack web application built with the MERN stack.</p>
-                  </div>
-                  <div className="bg-zinc-800/50 p-4 rounded-lg hover:bg-zinc-800 transition-colors cursor-pointer">
-                    <h3 className="text-lg font-medium text-purple-400">Project Beta</h3>
-                    <p className="text-gray-400 text-sm mt-2">An NextJS app with modern UI animations and components.</p>
-                  </div>
-                </div>
-              </div>
-            </BoxReveal>
           </div>
         </div>
       </div>

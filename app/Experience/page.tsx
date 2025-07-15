@@ -30,36 +30,18 @@ interface SkillCategory {
 
 const experiences: Experience[] = [
   {
-    company: "Parjanya Web Development",
+    company: " Looped Labs Pvt. Ltd.",
     role: "Full Stack Developer",
-    period: "Aug 2024 - Oct 2024",
-    description: "Working on full-stack web development projects using modern technologies and frameworks. Responsible for designing, developing, and maintaining web applications."
+    period: "Feb 2025 - Mar 2025",
+    description: "Designed a stable system architecture using AWS EC2 with Load Balancing to ensure high availability and scalability. Used Node.js and optimized core utilization to handle parallel user requests, improving server efficiency by at least 20%. Independently designed and managed a dynamic gallery module, enabling real-time media upload, retrieval, and presentation for end users. Implemented SEO for better search visibility and followed CI/CD practices using Jenkins for smooth deployment."
   }
 ];
 
-const projects: Project[] = [
-  {
-    title: "St. Joseph High School Website",
-    description:
-      "Developed a full-stack website using Next.js to integrate front-end and back-end functionalities, providing a seamless and dynamic user experience for school-related information.",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    image: "/e2.png",
-    link: "https://stjosephhighschooltbdam.com/",
-  },
-  {
-    title: "Curly Cuts Pet Grooming",
-    description:
-      "Designed a responsive front-end for Curly Cuts using Next.js, focusing on a modern and user-friendly web page design.",
-    technologies: ["Next.js", "React", "Responsive Design"],
-    image: "/e1.png",
-    link: "https://curly-cuts.vercel.app/",
-  },
-];
 
 const skillCategories: SkillCategory[] = [
   {
     name: "Programming Languages",
-    skills: ["Java", "C++", "C", "TypeScript", "JavaScript"],
+    skills: ["Java", "C++", "C", "JavaScript"],
     icon: <Code className="text-blue-500" size={24} />,
   },
   {
@@ -154,14 +136,6 @@ const Experience = () => {
             <div className="grid gap-6">
               {experiences.map((experience, index) => (
                 <ExperienceCard key={index} experience={experience} />
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <div className="grid md:grid-cols-2 gap-8">
-              {projects.map((project, index) => (
-                <ProjectCard key={index} project={project} />
               ))}
             </div>
           </div>

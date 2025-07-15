@@ -19,7 +19,7 @@ const navigation = [
   { name: "Experience", href: "/Experience", icon: "📋" },
   { name: "Education", href: "/Education", icon: "🎓" },
   { name: "Contact", href: "/contact", icon: "📬" },
-  { name: "Resume", href: "/resume.pdf", icon: "📄" }
+  { name: "Resume", href: "/resume.pdf", icon: "📄", newTab: true }
 ];
 
 export default function Home() {

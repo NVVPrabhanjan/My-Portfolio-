@@ -10,26 +10,30 @@ const skillCategories = [
     title: "Technical Skills",
     icon: <Code className="w-10 h-10 text-blue-500" />,
     skills: [
-      "HTML5", 
-      "CSS3", 
-      "JavaScript (ES6+)", 
-      "TypeScript", 
-      "SQL", 
-      "ReactJS", 
-      "NextJS",
-      "Tailwind CSS"
+      "C/C++",
+      "Java",
+      "HTML", 
+      "CSS", 
+      "JavaScript",  
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "SQL" 
     ]
   },
   {
     title: "Tools/Platforms",
     icon: <Settings className="w-10 h-10 text-green-500" />,
     skills: [
+      "AWS EC2",
+      "Digital Ocean",     
       "Visual Studio Code",
       "Git & GitHub",
       "LeetCode",
-      "Figma",
       "Postman",
       "Docker (Basic)",
+      "Jenkins",
       "Windows",
       "Linux"
     ]

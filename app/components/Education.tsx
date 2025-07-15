@@ -15,7 +15,7 @@ const educationData = {
   highlights: [
     {
       title: "Academic Excellence",
-      description: "Consistently maintained high academic performance with 9.02 CGPA"
+      description: "Consistently maintained high academic performance with 8.89 CGPA"
     },
     {
       title: "Technical Engagement",
