@@ -1,25 +1,23 @@
 import "../global.css";
-import { Inter } from "@next/font/google";
-import LocalFont from "@next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
   title: {
-    default: "Prabhanjan | Java | WebDevelopment",
-    template: "%s | Prabhanjan | Java | WebDevelopment",
+    default: "Prabhanjan | Full Stack Developer",
+    template: "%s | Prabhanjan",
   },
-  description: "Prabhanjan BMSCE",
+  description:
+    "Prabhanjan — Information Science student and Full Stack Developer. Builds efficient web applications, scalable backend systems, and developer tooling.",
   openGraph: {
-    title: "Prabhanjan | Java | WebDevelopment",
+    title: "Prabhanjan | Full Stack Developer",
     description:
-      "Prabhanjan BMSCE",
-    url: "https://prabhanjan.com",
-    siteName: "Prabhanjan | Java | WebDevelopment",
+      "Information Science student and Full Stack Developer at BMSCE.",
+    url: "https://prabhanjan.live",
+    siteName: "Prabhanjan.live",
     images: [
       {
         url: "https://static.vecteezy.com/system/resources/previews/003/693/837/non_2x/p-letter-logo-icon-for-business-and-company-vector.jpg",
-        //url: "https://prabhanjan.com/og.png",
         width: 1920,
         height: 1080,
       },
@@ -39,7 +37,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Prabhanjan | Java | WebDevelopment",
+    title: "Prabhanjan | Full Stack Developer",
     card: "summary_large_image",
   },
   icons: {
@@ -47,30 +45,41 @@ export const metadata: Metadata = {
   },
 };
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const calSans = LocalFont({
-  src: "../public/fonts/CalSans-SemiBold.ttf",
-  variable: "--font-calsans",
-});
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
+    <html lang="en">
       <head>
         <Analytics />
+        {/* Preconnect to Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body
-        className={`bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined}`}
-      >
+      <body className="bg-[#0B0F14] text-[#e6edf3] antialiased overflow-x-hidden pb-[22px]">
         {children}
+
+        {/* VS Code-style Status Bar */}
+        <footer
+          className="vscode-statusbar"
+          role="contentinfo"
+          aria-label="Editor status bar"
+        >
+          <span className="flex items-center gap-1.5">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M1 2.5A1.5 1.5 0 012.5 1h11A1.5 1.5 0 0115 2.5v11a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 011 13.5v-11zm1.5-.5a.5.5 0 00-.5.5v11a.5.5 0 00.5.5h11a.5.5 0 00.5-.5v-11a.5.5 0 00-.5-.5h-11z"/>
+              <path d="M4 8a4 4 0 118 0 4 4 0 01-8 0zm1 0a3 3 0 106 0 3 3 0 00-6 0z"/>
+            </svg>
+            main
+          </span>
+          <span>TypeScript</span>
+          <span>UTF-8</span>
+          <span>Ln 1, Col 1</span>
+          <span className="ml-auto">Prabhanjan.live</span>
+          <span>▲ Ready</span>
+        </footer>
       </body>
     </html>
   );

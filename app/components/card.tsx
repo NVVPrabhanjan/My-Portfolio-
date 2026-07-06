@@ -1,43 +1,54 @@
 "use client";
 import {
-	motion,
-	useMotionTemplate,
-	useMotionValue,
-	useSpring,
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useSpring,
 } from "framer-motion";
-
-import { MouseEventHandler, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
 export const Card: React.FC<PropsWithChildren> = ({ children }) => {
-	const mouseX = useSpring(0, { stiffness: 500, damping: 100 });
-	const mouseY = useSpring(0, { stiffness: 500, damping: 100 });
+  const mouseX = useSpring(useMotionValue(0), { stiffness: 350, damping: 40 });
+  const mouseY = useSpring(useMotionValue(0), { stiffness: 350, damping: 40 });
 
-	function onMouseMove({ currentTarget, clientX, clientY }: any) {
-		const { left, top } = currentTarget.getBoundingClientRect();
-		mouseX.set(clientX - left);
-		mouseY.set(clientY - top);
-	}
-	const maskImage = useMotionTemplate`radial-gradient(240px at ${mouseX}px ${mouseY}px, white, transparent)`;
-	const style = { maskImage, WebkitMaskImage: maskImage };
+  function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent<HTMLDivElement>) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
 
-	return (
-		<div
-			onMouseMove={onMouseMove}
-			className="overflow-hidden relative duration-700 border rounded-xl hover:bg-zinc-800/10 group md:gap-8 hover:border-zinc-400/50 border-zinc-600 "
-		>
-			<div className="pointer-events-none">
-				<div className="absolute inset-0 z-0  transition duration-1000 [mask-image:linear-gradient(black,transparent)]" />
-				<motion.div
-					className="absolute inset-0 z-10  bg-gradient-to-br opacity-100  via-zinc-100/10  transition duration-1000 group-hover:opacity-50 "
-					style={style}
-				/>
-				<motion.div
-					className="absolute inset-0 z-10 opacity-0 mix-blend-overlay transition duration-1000 group-hover:opacity-100"
-					style={style}
-				/>
-			</div>
+  // Spotlight gradient masks
+  const spotlightMask = useMotionTemplate`radial-gradient(350px circle at ${mouseX}px ${mouseY}px, rgba(120, 119, 198, 0.15), transparent 80%)`;
+  const borderMask = useMotionTemplate`radial-gradient(280px circle at ${mouseX}px ${mouseY}px, rgba(59, 130, 246, 0.4), transparent 80%)`;
 
-			{children}
-		</div>
-	);
+  return (
+    <div
+      onMouseMove={onMouseMove}
+      className="relative overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-900/30 backdrop-blur-md hover:border-zinc-700/80 transition-all duration-300 group"
+    >
+      {/* Background spotlight overlay */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: spotlightMask,
+        }}
+      />
+
+      {/* Border spotlight overlay */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px z-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 border border-transparent"
+        style={{
+          background: borderMask,
+          WebkitMaskImage: useMotionTemplate`radial-gradient(280px circle at ${mouseX}px ${mouseY}px, black, transparent)`,
+          maskImage: useMotionTemplate`radial-gradient(280px circle at ${mouseX}px ${mouseY}px, black, transparent)`,
+        }}
+      />
+
+      <div className="relative z-10 h-full w-full">
+        {children}
+      </div>
+    </div>
+  );
 };
+
+export default Card;

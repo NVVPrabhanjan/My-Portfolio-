@@ -1,10 +1,505 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  .text-edge-outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
-  }
-} 
+/* ============================================================
+   IDE DESIGN SYSTEM — CSS CUSTOM PROPERTIES
+   ============================================================ */
+:root {
+  /* Backgrounds */
+  --bg-primary:   #0B0F14;
+  --bg-secondary: #111827;
+  --bg-card:      #161B22;
+  --bg-sidebar:   #0D1117;
+  --bg-titlebar:  #1F2428;
+  --bg-statusbar: #007ACC;
 
+  /* Borders */
+  --border-subtle:  #21262d;
+  --border-default: #30363d;
+  --border-active:  #58a6ff;
+
+  /* Accent Colors */
+  --accent-blue:    #58a6ff;
+  --accent-cyan:    #39d353;
+  --accent-purple:  #bc8cff;
+  --accent-emerald: #3fb950;
+  --accent-yellow:  #e3b341;
+  --accent-red:     #f85149;
+  --accent-orange:  #f0883e;
+
+  /* Syntax Token Colors (Dracula-inspired) */
+  --syntax-keyword:   #ff79c6;
+  --syntax-string:    #f1fa8c;
+  --syntax-function:  #8be9fd;
+  --syntax-comment:   #6272a4;
+  --syntax-variable:  #bd93f9;
+  --syntax-number:    #50fa7b;
+  --syntax-operator:  #ff79c6;
+  --syntax-type:      #8be9fd;
+  --syntax-property:  #50fa7b;
+  --syntax-tag:       #ff5555;
+  --syntax-attribute: #50fa7b;
+  --syntax-punctuation: #f8f8f2;
+
+  /* Git Colors */
+  --git-add:    #3fb950;
+  --git-remove: #f85149;
+  --git-modify: #e3b341;
+  --git-rename: #58a6ff;
+
+  /* Text */
+  --text-primary:   #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted:     #484f58;
+  --text-link:      #58a6ff;
+}
+
+/* ============================================================
+   BASE RESETS
+   ============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: rgba(88, 166, 255, 0.3);
+    color: #e6edf3;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-default);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+}
+
+/* ============================================================
+   IDE BACKGROUND — SUBTLE GRID RULERS
+   ============================================================ */
+.ide-bg {
+  background-color: var(--bg-primary);
+  background-image:
+    linear-gradient(rgba(88, 166, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(88, 166, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: -1px -1px;
+}
+
+.ide-bg-dots {
+  background-color: var(--bg-primary);
+  background-image: radial-gradient(rgba(88, 166, 255, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ============================================================
+   SYNTAX HIGHLIGHTING CLASSES
+   ============================================================ */
+.token-keyword   { color: var(--syntax-keyword); }
+.token-string    { color: var(--syntax-string); }
+.token-function  { color: var(--syntax-function); }
+.token-comment   { color: var(--syntax-comment); font-style: italic; }
+.token-variable  { color: var(--syntax-variable); }
+.token-number    { color: var(--syntax-number); }
+.token-operator  { color: var(--syntax-operator); }
+.token-type      { color: var(--syntax-type); }
+.token-property  { color: var(--syntax-property); }
+.token-punctuation { color: var(--syntax-punctuation); }
+
+/* ============================================================
+   EDITOR CHROME
+   ============================================================ */
+.editor-window {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.editor-titlebar {
+  background: var(--bg-titlebar);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  height: 38px;
+  gap: 8px;
+  user-select: none;
+}
+
+.traffic-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.traffic-dot-red    { background: #ff5f57; }
+.traffic-dot-yellow { background: #ffbd2e; }
+.traffic-dot-green  { background: #28ca42; }
+
+.editor-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  height: 100%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-right: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.editor-tab:hover {
+  background: rgba(88, 166, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.editor-tab.active {
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border-top: 1px solid var(--accent-blue);
+}
+
+.editor-tab .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.editor-gutter {
+  background: var(--bg-card);
+  border-right: 1px solid var(--border-subtle);
+  padding: 0 12px;
+  user-select: none;
+  min-width: 48px;
+  text-align: right;
+}
+
+.line-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.line-number.active {
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   GIT DIFF LINES
+   ============================================================ */
+.diff-add {
+  background: rgba(63, 185, 80, 0.08);
+  border-left: 3px solid var(--git-add);
+  padding-left: 8px;
+}
+
+.diff-remove {
+  background: rgba(248, 81, 73, 0.08);
+  border-left: 3px solid var(--git-remove);
+  padding-left: 8px;
+}
+
+.diff-context {
+  border-left: 3px solid transparent;
+  padding-left: 8px;
+}
+
+/* ============================================================
+   TERMINAL STYLES
+   ============================================================ */
+.terminal-window {
+  background: #0d1117;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal-titlebar {
+  background: #161b22;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminal-body {
+  padding: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.terminal-prompt::before {
+  content: '$ ';
+  color: var(--accent-emerald);
+}
+
+.terminal-output {
+  color: var(--text-secondary);
+}
+
+.terminal-success {
+  color: var(--accent-emerald);
+}
+
+.terminal-error {
+  color: var(--accent-red);
+}
+
+.terminal-info {
+  color: var(--accent-blue);
+}
+
+.terminal-comment {
+  color: var(--syntax-comment);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+/* Cursor blink */
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+.cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* Terminal typing */
+@keyframes type-in {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Fade up */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.5s ease forwards;
+}
+
+/* Pulse slow */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+/* Compiler progress */
+@keyframes compile-progress {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+.compile-bar {
+  animation: compile-progress 2s ease-in-out forwards;
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Scanline */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Git branch pulse */
+@keyframes git-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(63, 185, 80, 0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(63, 185, 80, 0); }
+}
+.git-pulse {
+  animation: git-pulse 2s ease-in-out infinite;
+}
+
+/* Slide in from left */
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in-left {
+  animation: slide-in-left 0.4s ease forwards;
+}
+
+/* Build success flash */
+@keyframes success-flash {
+  0%   { background: rgba(63, 185, 80, 0.2); }
+  100% { background: transparent; }
+}
+
+/* ============================================================
+   COMPONENT UTILITIES
+   ============================================================ */
+
+/* IDE Card */
+.ide-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  transition: border-color 0.2s;
+}
+.ide-card:hover {
+  border-color: var(--border-default);
+}
+
+/* Repo badge */
+.lang-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* File tree */
+.file-tree-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.file-tree-item:hover {
+  background: rgba(88, 166, 255, 0.06);
+  color: var(--text-primary);
+}
+.file-tree-item.active {
+  background: rgba(88, 166, 255, 0.12);
+  color: var(--accent-blue);
+}
+
+/* Build badge */
+.badge-passing {
+  background: rgba(63, 185, 80, 0.12);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(63, 185, 80, 0.25);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.badge-failing {
+  background: rgba(248, 81, 73, 0.12);
+  color: var(--accent-red);
+  border: 1px solid rgba(248, 81, 73, 0.25);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.badge-deployed {
+  background: rgba(88, 166, 255, 0.12);
+  color: var(--accent-blue);
+  border: 1px solid rgba(88, 166, 255, 0.25);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+/* Status bar (VS Code style bottom bar) */
+.vscode-statusbar {
+  background: var(--bg-statusbar);
+  color: white;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 12px;
+  height: 22px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink,
+  .animate-pulse-slow,
+  .animate-float,
+  .git-pulse,
+  .animate-fade-up,
+  .animate-slide-in-left,
+  .compile-bar {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+   MONO FONT UTILITY
+   ============================================================ */
+.font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Keep legacy compatibility */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image:
+    linear-gradient(rgba(88,166,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(88,166,255,0.02) 1px, transparent 1px);
+}
+.bg-radial-gradient-glow {
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(88,166,255,0.06), transparent);
+}
